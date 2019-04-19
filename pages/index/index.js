@@ -13,21 +13,27 @@ Page({
     ],
     result: '',
     imgwidth: 0,
-    imgheight: 0, 
-
+    imgheight: 0,
+    windowWidth: 375,
+    windowHeight: 603
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
     var windowWidth = 375
     var windowHeight = 603
     try {
       var res = wx.getSystemInfoSync()
       windowWidth = res.windowWidth
-      windowHeight = res.windowHeight
+      windowHeight = res.windowHeight * 0.6
       console.log('windowWidth: ' + windowWidth + ' windowHeight : ' + windowHeight)
+      that.setData({
+        windowWidth,
+        windowHeight
+      })
     } catch (e) {
       console.error('getSystemInfoSync failed!');
     }
@@ -47,30 +53,21 @@ Page({
         })
         wx.getImageInfo({
           src: res.tempFilePaths[0],
-          success: function(res) {
+          success: function (res) {
             console.log('height :' + res.height + ' width: ' + res.width)
           },
-          fail: function(res) {},
-          complete: function(res) {},
+          fail: function (res) { },
+          complete: function (res) { },
         })
-        var windowWidth = 375
-        var windowHeight = 603
-        try {
-          var res = wx.getSystemInfoSync()
-          windowWidth = res.windowWidth
-          windowHeight = res.windowHeight * 0.6
-          console.log('windowWidth: ' + windowWidth + ' windowHeight : ' + windowHeight)
-        } catch (e) {
-          console.error('getSystemInfoSync failed!');
+        console.log('windowWidth: ' + that.data.windowWidth + ' windowHeight : ' + that.data.windowHeight)
+        ctx.drawImage(that.data.tempImagePath, 0, 0, that.data.windowWidth, that.data.windowHeight)
+        if (that.data.location == 1) {      
+          ctx.rect(10, 10, 100, 50)     
+          ctx.stroke()
+          ctx.draw()
+        } else {
+          ctx.draw()
         }
-        ctx.drawImage(that.data.tempImagePath, 0, 0, windowWidth, windowHeight)
-        
-        // ctx.moveTo(0, 0)
-        ctx.rect(10, 10, 100, 50)
-        // ctx.lineTo(110, 60)
-        ctx.stroke()
-        ctx.draw()
-       
         that.upload(tempImagePath)
       },
       fail: function () { },
@@ -100,6 +97,14 @@ Page({
           that.setData({
             result: JSON.parse(res.data).data[0],
           })
+          ctx.drawImage(that.data.tempImagePath, 0, 0, that.data.windowWidth, that.data.windowHeight)
+          if (that.data.location == 1) {
+            ctx.rect(10, 10, 100, 50)
+            ctx.stroke()
+            ctx.draw()
+          } else {
+            ctx.draw()
+          }
           // 页面渲染完成  
           var that = this
           console.log('onReady')
@@ -157,7 +162,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**
