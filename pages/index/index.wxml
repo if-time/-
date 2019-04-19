@@ -1,0 +1,19 @@
+<!--pages/index/index.wxml-->
+<view class="view">
+  <view class="window">
+    <!-- <image class="cover-9" src="{{tempImagePath}}" bindtap="img"></image> -->
+    <canvas canvas-id='customCanvas' class="cover-9"></canvas>
+    <text class="cover-1">{{result}}</text>
+    <view class="window-2">
+      <button bindtap="camera" type="primary" data-type="chooseImage">图片</button>
+    </view>
+    <view>
+      <checkbox-group bindchange="checkboxChange" style='margin-top: 30rpx;'>
+        <label class="checkbox" wx:for="{{items}}" wx:key='unique'>
+          <checkbox value="{{item.name}}" checked="{{item.checked}}" /> {{item.value}}
+        </label>
+      </checkbox-group>
+    </view>
+
+  </view>
+</view>
