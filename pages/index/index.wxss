@@ -34,7 +34,7 @@ page {
   width: 728rpx;
   height: 60%;
   margin: 0 10rpx;
-  border: 2rpx solid;
+  /* border: 2rpx solid; */
   border-radius: 5px;
   margin-bottom: 20rpx;
 }
@@ -42,4 +42,23 @@ page {
 button {
   margin: 0 10rpx;
   width: 100%;
+}
+
+.top-bar {
+  width: 700rpx;
+  margin: 20rpx auto;
+  height: 80rpx;
+  display: flex;
+  background: #fff;
+  border-radius: 10rpx;
+  /* border: 1px solid #ddd; */
+  flex-direction: column;
+}
+
+.active {
+  line-height: 80rpx;
+  text-align: center;
+  color: #000;
+  flex: 1;
+  font-size: 30rpx;
 }
