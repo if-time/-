@@ -14,6 +14,10 @@
         </label>
       </checkbox-group>
     </view>
-
+    <view class='top-bar'>
+      <view wx:for="{{resultlist}}" wx:key="list" class='active' data-index='{{index}}' bindtap="selected">
+       {{index + 1}} 、 {{item.name}} : {{item.pos}}
+      </view>
+    </view>
   </view>
 </view>
