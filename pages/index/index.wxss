@@ -32,7 +32,7 @@ page {
 
 .cover-9 {
   width: 728rpx;
-  height: 60%;
+  height: 70%;
   margin: 0 10rpx;
   /* border: 2rpx solid; */
   border-radius: 5px;

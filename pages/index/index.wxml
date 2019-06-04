@@ -2,21 +2,24 @@
 <view class="view">
   <view class="window">
     <!-- <image class="cover-9" src="{{tempImagePath}}" bindtap="img"></image> -->
-    <canvas canvas-id='customCanvas' class="cover-9"></canvas>
-    <text class="cover-1">{{result}}</text>
+    <canvas canvas-id='customCanvas' class="cover-9" style='height: {{windowHeight}}'></canvas>
+    <!-- <text class="cover-1">{{result}}</text> -->
     <view class="window-2">
-      <button bindtap="camera" type="primary" data-type="chooseImage">图片</button>
+      <button bindtap="camera" type="primary" data-type="chooseImage">拍照/选择图片</button>
     </view>
-    <view>
+    <!-- <view>
       <checkbox-group bindchange="checkboxChange" style='margin-top: 30rpx;'>
         <label class="checkbox" wx:for="{{items}}" wx:key='unique'>
           <checkbox value="{{item.name}}" checked="{{item.checked}}" /> {{item.value}}
         </label>
       </checkbox-group>
-    </view>
+    </view> -->
     <view class='top-bar'>
-      <view wx:for="{{resultlist}}" wx:key="list" class='active' data-index='{{index}}' bindtap="selected">
-       {{index + 1}} 、 {{item.name}} : {{item.pos}}
+      <view wx:if="{{type == 3}}" wx:for="{{resultlist}}" wx:key="list" class='active' data-index='{{index}}' bindtap="selected">
+        {{item.name}} : {{item.pos}}
+      </view>
+      <view wx:if="{{type == 2}}" wx:for="{{resultlist}}" wx:key="list" class='active' data-index='{{index}}' bindtap="selected">
+        {{index + 1}} 、 {{item.name}} : {{item.pos}}
       </view>
     </view>
   </view>
