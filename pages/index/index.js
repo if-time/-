@@ -38,21 +38,21 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    var tokenUrl = 'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=YorV2GNMDvQwSn8Y1Mwj4EXI&client_secret=gKQMQzOsTvtrA4y4Y6rIqi0W29UqUvOB'
-    wx.request({
-      url: tokenUrl,
-      dataType: "json",
-      header: {
-        'content-type': 'application/json; charset=UTF-8'
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log("获取百度TOKEN！！！" + res.data.access_token)
-        that.setData({
-          baidutoken: res.data.access_token
-        })
-      }
-    })
+    // var tokenUrl = 'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=YorV2GNMDvQwSn8Y1Mwj4EXI&client_secret=gKQMQzOsTvtrA4y4Y6rIqi0W29UqUvOB'
+    // wx.request({
+    //   url: tokenUrl,
+    //   dataType: "json",
+    //   header: {
+    //     'content-type': 'application/json; charset=UTF-8'
+    //   },
+    //   method: 'POST',
+    //   success: function (res) {
+    //     console.log("获取百度TOKEN！！！" + res.data.access_token)
+    //     that.setData({
+    //       baidutoken: res.data.access_token
+    //     })
+    //   }
+    // })
 
     var windowWidth = 375
     var windowHeight = 603
@@ -127,7 +127,7 @@ Page({
     }),
       
     wx.uploadFile({
-      url: 'https://detection.lisoft.com.cn/plants',
+      url: 'https://dec.lisoft.com.cn:443',
       filePath: path[0],
       name: 'imFile',
       header: {
@@ -135,7 +135,7 @@ Page({
       },
       formData: {
         'thresh': 0.1,
-        'token': that.data.baidutoken
+        // 'token': that.data.baidutoken
       },
       success: function (res) {
         console.log('上传成功返回的数据', JSON.parse(res.data).code)
@@ -245,7 +245,7 @@ Page({
         if (res.statusCode != 200) {
           wx.showModal({
             title: '提示',
-            content: '上传失败',
+            content: '上传失败了',
             showCancel: false
           })
           return;
